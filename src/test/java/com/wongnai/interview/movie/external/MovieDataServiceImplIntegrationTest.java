@@ -20,7 +20,9 @@ public class MovieDataServiceImplIntegrationTest {
 	@Test
 	public void testFetchAll() {
 		MoviesResponse result = movieDataService.fetchAll();
-		Assert.assertThat(result.size(), Matchers.equalTo(28795));
+
+		Assert.assertThat(result, Matchers.not(Matchers.empty()));
+		Assert.assertThat(result.size(), Matchers.not(0));
 	}
 
 	@Test
