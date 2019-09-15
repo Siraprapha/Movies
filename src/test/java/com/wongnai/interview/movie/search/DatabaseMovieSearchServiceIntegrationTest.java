@@ -66,4 +66,11 @@ public class DatabaseMovieSearchServiceIntegrationTest {
 
 		assertGloriousMovieKeyword(result);
 	}
+
+	@Test
+	public void testEmptyWordMustMatch() {
+		List<Movie> result = searchService.search("");
+
+		Assert.assertThat(result.size(), Matchers.not(0));
+	}
 }

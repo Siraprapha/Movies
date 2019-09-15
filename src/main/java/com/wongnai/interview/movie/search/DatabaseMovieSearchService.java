@@ -16,10 +16,6 @@ public class DatabaseMovieSearchService implements MovieSearchService {
 
 	@Override
 	public List<Movie> search(String queryText) {
-		//TODO: Step 3 => Please make all test in DatabaseMovieSearchServiceIntegrationTest run pass.
-		// This database search method must use only MovieRepository.findByNameContains(String), you also have to implement
-		// MovieDataSynchronizer.forceSync() to load all movie data, using MovieDataService, into MovieRepository.
-		// Do not change @Component annotation on this class
-		return movieRepository.findByNameContains(queryText);
+		return movieRepository.findByNameContainingIgnoreCase(queryText);
 	}
 }
