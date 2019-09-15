@@ -24,7 +24,7 @@ public class Movie {
 	/**
 	 * Required by JPA.
 	 */
-	protected Movie() {
+	public Movie() {
 	}
 
 	public Movie(String name) {
@@ -33,6 +33,10 @@ public class Movie {
 
 	public Long getId() {
 		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -45,5 +49,9 @@ public class Movie {
 
 	public List<String> getActors() {
 		return actors;
+	}
+
+	public void setActors(List<String> actors) {
+		this.actors = actors;
 	}
 }
