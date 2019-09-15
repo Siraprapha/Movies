@@ -4,6 +4,7 @@ import javax.transaction.Transactional;
 
 import com.wongnai.interview.movie.Movie;
 import com.wongnai.interview.movie.external.MoviesResponse;
+import com.wongnai.interview.movie.search.InvertedIndexMovieSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +22,9 @@ public class MovieDataSynchronizer {
 	@Autowired
 	private MovieRepository movieRepository;
 
+	@Autowired
+	private InvertedIndexMovieSearchService invertedIndexService;
+
 	@Transactional
 	public void forceSync() {
 		if (movieRepository.count() > 0) {
@@ -29,6 +33,8 @@ public class MovieDataSynchronizer {
 		MoviesResponse moviesResponse = movieDataService.fetchAll();
 		if (!moviesResponse.isEmpty()) {
 			movieRepository.saveAll(mapToMovieList(moviesResponse));
+			List<Movie> movies = movieRepository.findAll();
+			invertedIndexService.mapping(movies);
 		}
 	}
 

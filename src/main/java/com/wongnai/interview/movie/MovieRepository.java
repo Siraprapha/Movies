@@ -24,4 +24,6 @@ public interface MovieRepository extends CrudRepository<Movie, Long> {
 	 */
 	List<Movie> findByNameContainingIgnoreCase(@Param("keyword") String keyword);
 
+	@Override
+	List<Movie> findAll();
 }
